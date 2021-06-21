@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-// import "./Auth.css"
+import "./Auth.css"
 
 
 export const Login = props => {
@@ -43,7 +43,7 @@ export const Login = props => {
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
                     <h1>Luis' Barbershop</h1>
-                    <h2>Barber sign in</h2>
+                    <h2>Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
                         <input ref={email} type="email" id="email" className="form-control"  placeholder="Email address" required autoFocus />
@@ -59,9 +59,9 @@ export const Login = props => {
                     </fieldset>
                 </form>
             </section>
-            {/* <section className="link--register">
+            <section className="link--register">
                 <Link to="/register">Not a member yet?</Link>
-            </section> */}
+            </section>
         </main>
     )
 }
