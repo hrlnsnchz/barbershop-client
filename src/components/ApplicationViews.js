@@ -4,6 +4,7 @@ import { BarberProvider } from "./barber/BarberProvider.js"
 import { BarberList } from "./barber/BarberList.js"
 import { ServiceProvider } from "./service/ServiceProvider.js"
 import { ServiceList } from "./service/ServiceList.js"
+import { WaitlistProvider } from "./waitlist/WaitlistProvider.js"
 
 export const ApplicationViews = () => {
     return <>
@@ -12,18 +13,20 @@ export const ApplicationViews = () => {
             lineHeight: "1.75rem"
         }}>
             <BarberProvider>
+                <WaitlistProvider>
                 <Route exact path="/waitlist">
                     <BarberList />
                 </Route>
                 <Route exact path="/appointment/new">
                     <BarberList />
                 </Route>
+                <ServiceProvider>
+                    <Route exact path="/services/:barberId">
+                        <ServiceList />
+                    </Route>
+                </ServiceProvider>
+                </WaitlistProvider>
             </BarberProvider>
-            <ServiceProvider>
-                <Route exact path="/services">
-                    <ServiceList />
-                </Route>
-            </ServiceProvider>
         </main>
     </>
 }
