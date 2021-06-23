@@ -9,10 +9,11 @@ import { createWaitlist, WaitlistContext } from "../waitlist/WaitlistProvider"
 
 export const ServiceList = (props) => {
     const { services, getServices } = useContext(ServiceContext)
-    const { waitlists, createWaitlists} = useContext(WaitlistContext)
+    const { createWaitlists} = useContext(WaitlistContext)
     const history = useHistory()
     const barberId = useParams()
     console.log('barberId: ', parseInt(barberId.barberId));
+    const { addItem, emptyCart } = useCart();
 
     useEffect(() => {
         getServices()
@@ -20,7 +21,6 @@ export const ServiceList = (props) => {
 
     // npm package below this point
     function Page() {
-        const { addItem } = useCart();
       
         return (
           <div>
@@ -71,7 +71,7 @@ export const ServiceList = (props) => {
                 </li>
               ))}
             </ul>
-            <button type="submit"
+            <button type="submit" className="btn btn-primary waitlist"
                 onClick={evt => {
                     // Prevent form from being submitted
                     evt.preventDefault()
@@ -85,9 +85,10 @@ export const ServiceList = (props) => {
 
                     // Send POST request to your API
                     createWaitlists(waitlist)
+                        .then(() => emptyCart())
                         .then(() => history.push("/confirmation"))
                 }}
-                className="btn btn-primary">Join Waitlist</button>
+                >Join Waitlist</button>
           </>
         );
       }
