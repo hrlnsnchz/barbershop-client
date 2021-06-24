@@ -13,6 +13,9 @@ export const ServiceList = (props) => {
     const history = useHistory()
     const barberId = useParams()
     console.log('barberId: ', parseInt(barberId.barberId));
+    console.log('barberId: ', barberId.queueMethod);
+
+
     const { addItem, emptyCart } = useCart();
 
     useEffect(() => {

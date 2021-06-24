@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from "react"
 import { BarberContext } from "./BarberProvider.js"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 
 export const BarberList = (props) => {
     const { barbers, getBarbers } = useContext(BarberContext)
+    const queueMethod = useParams()
 
     useEffect(() => {
         getBarbers()
@@ -19,7 +20,7 @@ export const BarberList = (props) => {
                 {
                     Array.isArray(barbers) ? barbers.map(barber => {
                         return <section key={barber.id} className="registration">
-                            <Link to={`/services/${barber.id}`}>
+                            <Link to={`${queueMethod.queueMethod}/services/${barber.id}`}>
                                 <button className="registration__barber" 
                                 >{barber.user.first_name} {' '}
                                 {barber.user.last_name}</button>
