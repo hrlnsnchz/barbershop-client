@@ -9,6 +9,8 @@ import { ConfirmationWaitlist } from "./confirmation/ConfirmationWaitlist.js"
 import { CustomerProvider } from "./customer/CustomerProvider.js"
 import { MyCalendar } from "./calendar/Calendar.js"
 import { AppointmentProvider } from "./appointment/AppointmentProvider.js"
+import { AppointmentForm } from "./appointment/AppointmentForm.js"
+
 
 export const ApplicationViews = () => {
     return <>
@@ -18,23 +20,24 @@ export const ApplicationViews = () => {
         }}>
             <BarberProvider>
                 <WaitlistProvider>
-                <Route exact path="/waitlist">
-                    <BarberList />
-                </Route>
-                <AppointmentProvider>
-                    <Route exact path="/appointment/new">
-                        <MyCalendar />
-                    </Route>
-                </AppointmentProvider>
                 <ServiceProvider>
-                    <Route exact path="/services/:barberId">
-                        <ServiceList />
-                    </Route>
-                    <CustomerProvider>
-                    <Route exact path="/confirmation">
-                        <ConfirmationWaitlist />
-                    </Route>
-                    </CustomerProvider>
+                        <AppointmentProvider>
+                            <Route exact path="/waitlist">
+                            <BarberList />
+                                {/* <MyCalendar /> */}
+                            </Route>
+                            <Route exact path="/appointment">
+                            <AppointmentForm />
+                            </Route>
+                        </AppointmentProvider>
+                        <Route exact path="/:queueMethod/services/:barberId">
+                            <ServiceList />
+                        </Route>
+                        <CustomerProvider>
+                        <Route exact path="/confirmation">
+                            <ConfirmationWaitlist />
+                        </Route>
+                        </CustomerProvider>
                 </ServiceProvider>
                 </WaitlistProvider>
             </BarberProvider>

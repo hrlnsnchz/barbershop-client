@@ -27,7 +27,7 @@ export const AppointmentProvider = (props) => {
             .then(setAppointments)
     }
 
-    const createAppointments = (appointment) => {
+    const createAppointment = (appointment) => {
         return fetch("http://localhost:8000/appointments", {
             method: "POST",
             headers: {
@@ -40,7 +40,7 @@ export const AppointmentProvider = (props) => {
     }
 
     return (
-        <AppointmentContext.Provider value={{ appointments, getAppointments, createAppointments }} >
+        <AppointmentContext.Provider value={{ appointments, getAppointments, createAppointment }} >
             { props.children }
         </AppointmentContext.Provider>
     )

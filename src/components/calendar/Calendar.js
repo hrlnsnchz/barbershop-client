@@ -3,27 +3,32 @@ import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import { AppointmentContext } from "../appointment/AppointmentProvider"
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import events from "./events";
 
 
 const localizer = momentLocalizer(moment)
 
 export const MyCalendar = props => {
     const { appointments, getAppointments } = useContext(AppointmentContext)
-    console.log('appointments: ', appointments)
+
+    const events = appointments.map(a => {
+        a.start = new Date(a.start)
+        a.end = new Date(a.end)
+        return a
+    })
 
     useEffect(() => {
         getAppointments()
     }, [])
+    
     return(
         <>
             <div>
                 <Calendar
-                localizer={localizer}
-                events={appointments}
+                events={events}
                 startAccessor="start"
                 endAccessor="end"
-                style={{ height: "100vh" }}
+                localizer={localizer}
+                style={{ height: 500 }}
                 />
             </div>
         </>

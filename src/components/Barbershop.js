@@ -18,7 +18,7 @@ export const Barbershop = () => {
                 history.push("/waitlist")
             }}>Get in Line</button>
             <button onClick={() => {
-                history.push({ pathname: "/appointment/new" })
+                history.push({ pathname: "/appointment" })
             }}>Appointment</button>
         </address>
         <Route render={() => {
