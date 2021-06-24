@@ -7,6 +7,8 @@ import { ServiceList } from "./service/ServiceList.js"
 import { WaitlistProvider } from "./waitlist/WaitlistProvider.js"
 import { ConfirmationWaitlist } from "./confirmation/ConfirmationWaitlist.js"
 import { CustomerProvider } from "./customer/CustomerProvider.js"
+import { MyCalendar } from "./calendar/Calendar.js"
+import { AppointmentProvider } from "./appointment/AppointmentProvider.js"
 
 export const ApplicationViews = () => {
     return <>
@@ -19,9 +21,11 @@ export const ApplicationViews = () => {
                 <Route exact path="/waitlist">
                     <BarberList />
                 </Route>
-                <Route exact path="/appointment/new">
-                    <BarberList />
-                </Route>
+                <AppointmentProvider>
+                    <Route exact path="/appointment/new">
+                        <MyCalendar />
+                    </Route>
+                </AppointmentProvider>
                 <ServiceProvider>
                     <Route exact path="/services/:barberId">
                         <ServiceList />
