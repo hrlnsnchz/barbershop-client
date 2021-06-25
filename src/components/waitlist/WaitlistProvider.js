@@ -16,17 +16,6 @@ export const WaitlistProvider = (props) => {
     }
 
 
-    // For getting waitlists by users and provide a ticket #
-    const getWaitlistsByUser = () => {
-        return fetch("http://127.0.0.1:8000/waitlists?customer=1", {
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("lu_token")}`
-            }
-        })
-            .then(response => response.json())
-            .then(setWaitlists)
-    }
-
     const createWaitlists = (waitlist) => {
         return fetch("http://localhost:8000/waitlists", {
             method: "POST",

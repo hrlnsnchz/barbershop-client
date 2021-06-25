@@ -15,18 +15,6 @@ export const AppointmentProvider = (props) => {
             .then(setAppointments)
     }
 
-
-    // For getting Appointments by users and provide a ticket #
-    const getAppointmentsByUser = () => {
-        return fetch("http://127.0.0.1:8000/appointments?customer=1", {
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("lu_token")}`
-            }
-        })
-            .then(response => response.json())
-            .then(setAppointments)
-    }
-
     const createAppointment = (appointment) => {
         return fetch("http://localhost:8000/appointments", {
             method: "POST",

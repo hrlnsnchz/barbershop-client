@@ -3,8 +3,8 @@ import { useHistory } from "react-router"
 import { useParams } from "react-router-dom"
 import { ServiceContext } from "./ServiceProvider.js"
 import { CartProvider, useCart } from "react-use-cart";
-import { createWaitlist, WaitlistContext } from "../waitlist/WaitlistProvider"
-
+import { WaitlistContext } from "../waitlist/WaitlistProvider"
+import { Button } from "react-bootstrap"
 
 
 export const ServiceList = (props) => {
@@ -12,8 +12,6 @@ export const ServiceList = (props) => {
     const { createWaitlists} = useContext(WaitlistContext)
     const history = useHistory()
     const barberId = useParams()
-    console.log('barberId: ', parseInt(barberId.barberId));
-    console.log('queueMethod: ', barberId.queueMethod);
 
 
     const { addItem, emptyCart } = useCart();
@@ -30,7 +28,7 @@ export const ServiceList = (props) => {
           <div>
             {services.map((s) => (
               <div key={s.id}>
-                <button className="btn btn-primary addItem" onClick={() => addItem(s, 1)}>{s.label} {' $'} {s.price}</button>
+                <Button className="btn btn-primary addItem" variant="light" onClick={() => addItem(s, 1)}>{s.label} {' $'} {s.price}</Button>
               </div>
             ))}
           </div>
@@ -60,21 +58,21 @@ export const ServiceList = (props) => {
               {items.map((item) => (
                 <li key={item.id}>
                   {item.quantity} x {item.label} &mdash;
-                  <button
+                  <Button variant="light"
                     onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
                   >
                     -
-                  </button>
-                  <button
+                  </Button>
+                  <Button variant="light"
                     onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
                   >
                     +
-                  </button>
-                  <button onClick={() => removeItem(item.id)}>&times;</button>
+                  </Button>
+                  <Button variant="light" onClick={() => removeItem(item.id)}>&times;</Button>
                 </li>
               ))}
             </ul>
-            <button type="submit" className="btn btn-primary waitlist"
+            <Button type="submit" variant="light" className="btn btn-primary waitlist"
                 onClick={evt => {
                     // Prevent form from being submitted
                     evt.preventDefault()
@@ -90,7 +88,7 @@ export const ServiceList = (props) => {
                         .then(() => emptyCart())
                         .then(() => history.push("/confirmation"))
                 }}
-                >Join Waitlist</button>
+                >Join Waitlist</Button>
           </>
         );
       }

@@ -1,5 +1,6 @@
 import React from "react"
 import { useHistory } from "react-router-dom"
+import { Button } from "react-bootstrap"
 
 export const Home = () => {
     const history = useHistory()
@@ -9,12 +10,12 @@ export const Home = () => {
         <>
         <h2>Welcome to Luis' Barbershop</h2>
         <address>
-            <button onClick={() => {
+            <Button variant="light" onClick={() => {
                 history.push("/waitlist")
-            }}>Get in Line</button>
-            <button onClick={() => {
+            }}>Get in Line</Button>
+            <Button variant="light" onClick={() => {
                 history.push({ pathname: "/appointment" })
-            }}>Appointment</button>
+            }}>Appointment</Button>
         </address>
         </>
     )

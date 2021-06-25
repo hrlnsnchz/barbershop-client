@@ -1,12 +1,11 @@
 import React, { useContext, useEffect } from "react"
 import { BarberContext } from "./BarberProvider.js"
 import { Link, useParams } from "react-router-dom"
-
+import { Button } from "react-bootstrap"
 
 export const BarberList = (props) => {
     const { barbers, getBarbers } = useContext(BarberContext)
     const queueMethod = useParams()
-    console.log('queueMethod: ', queueMethod);
 
     useEffect(() => {
         getBarbers()
@@ -14,7 +13,7 @@ export const BarberList = (props) => {
 
     return (
         <>
-            <article className="barbers">
+            <article className="barbersList">
                 <header className="barbers__header">
                     <h1>Our Barbers</h1>
                 </header>
@@ -22,9 +21,8 @@ export const BarberList = (props) => {
                     Array.isArray(barbers) ? barbers.map(barber => {
                         return <section key={barber.id} className="registration">
                             <Link to={`waitlist/services/${barber.id}`}>
-                                <button className="registration__barber" 
-                                >{barber.user.first_name} {' '}
-                                {barber.user.last_name}</button>
+                                <Button variant="light">{' '}{barber.user.first_name} {' '}
+                                {barber.user.last_name}</Button>
                             </Link>
                         </section>
                     }): ''

@@ -1,15 +1,16 @@
 .navbar {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: left;
-}
-
-.logo {
-    width: 75px;
-    height: 75px;
+    justify-content: center;
 }
 
 .navbar__item {
     flex-basis: 20%;
     list-style-type: none;
+}
+
+img {
+    border-radius: 10%;
+    width: 6em;
+    height: auto;
 }
