@@ -7,20 +7,9 @@ import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 
 export const Barbershop = () => {
-    const history = useHistory()
 
     return (
-
         <>
-        <h2>Welcome to Luis' Barbershop</h2>
-        <address>
-            <button onClick={() => {
-                history.push("/waitlist")
-            }}>Get in Line</button>
-            <button onClick={() => {
-                history.push({ pathname: "/appointment" })
-            }}>Appointment</button>
-        </address>
         <Route render={() => {
             if (localStorage.getItem("lu_token")) {
                 return <>

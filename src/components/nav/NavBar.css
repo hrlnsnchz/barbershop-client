@@ -4,6 +4,11 @@
     justify-content: left;
 }
 
+.logo {
+    width: 75px;
+    height: 75px;
+}
+
 .navbar__item {
     flex-basis: 20%;
     list-style-type: none;

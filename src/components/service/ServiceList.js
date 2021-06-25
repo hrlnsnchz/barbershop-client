@@ -13,7 +13,7 @@ export const ServiceList = (props) => {
     const history = useHistory()
     const barberId = useParams()
     console.log('barberId: ', parseInt(barberId.barberId));
-    console.log('barberId: ', barberId.queueMethod);
+    console.log('queueMethod: ', barberId.queueMethod);
 
 
     const { addItem, emptyCart } = useCart();
@@ -24,12 +24,13 @@ export const ServiceList = (props) => {
 
     // npm package below this point
     function Page() {
-      
+      const { addItem } = useCart();
+
         return (
           <div>
             {services.map((s) => (
               <div key={s.id}>
-                <button onClick={() => addItem(s)}>{s.label} {' $'} {s.price}</button>
+                <button className="btn btn-primary addItem" onClick={() => addItem(s, 1)}>{s.label} {' $'} {s.price}</button>
               </div>
             ))}
           </div>
@@ -39,7 +40,6 @@ export const ServiceList = (props) => {
       function Cart() {
         const {
           isEmpty,
-          totalUniqueItems,
           items,
           updateItemQuantity,
           removeItem,
@@ -54,7 +54,7 @@ export const ServiceList = (props) => {
       
         return (
           <>
-            <h1>Selected Services ({totalUniqueItems})</h1>
+            <h2>Selected Services</h2>
       
             <ul>
               {items.map((item) => (
@@ -84,7 +84,6 @@ export const ServiceList = (props) => {
                         waitlist_services: waitlist_services,
                         is_served: false
                     }
-                    console.log("waitlist:", waitlist)
 
                     // Send POST request to your API
                     createWaitlists(waitlist)
@@ -102,16 +101,7 @@ export const ServiceList = (props) => {
                 <header className="services__header">
                     <h1>Available Services</h1>
                 </header>
-                {/* {
-                    Array.isArray(services) ? services.map(service => {
-                        return <section key={service.label} className="registration">
-                            <button className="registration__game" onClick={() => {
-                    history.push("/services")
-                    }}>{service.label} {' $'}
-                            {service.price}</button>
-                        </section>
-                    }): ''
-                } */}
+
             </article >
             <CartProvider>
                 <Page />

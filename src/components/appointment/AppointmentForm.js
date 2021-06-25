@@ -92,15 +92,6 @@ export const AppointmentForm = () => {
                     </select>
                 </div>
             </fieldset>
-            {/* <fieldset>
-                <div className="form-group">
-                    <label htmlFor="description">Description: </label>
-                    <input type="text" name="description" required autoFocus className="form-control"
-                        value={currentAppointment.description}
-                        onChange={changeAppointmentDescriptionState}
-                    />
-                </div>
-            </fieldset> */}
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="start_date">Start Date: </label>
