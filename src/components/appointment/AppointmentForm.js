@@ -130,7 +130,7 @@ export const AppointmentForm = () => {
                     createAppointment(appointment)
                         .then(() => history.push("/appointments"))
                 }}
-                className="btn btn-primary">Create Event</button>
+                className="btn btn-primary">Confirm Appointment</button>
         </form>
     )
 }

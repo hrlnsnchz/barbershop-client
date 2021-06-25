@@ -24,9 +24,9 @@ export const ApplicationViews = () => {
                         <AppointmentProvider>
                             <Route exact path="/waitlist">
                             <BarberList />
-                                {/* <MyCalendar /> */}
                             </Route>
                             <Route exact path="/appointment">
+                                <MyCalendar />
                             <AppointmentForm />
                             </Route>
                         </AppointmentProvider>

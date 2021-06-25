@@ -22,6 +22,7 @@ export const MyCalendar = props => {
     
     return(
         <>
+        <h1>Barbers' Agendas</h1>
             <div>
                 <Calendar
                 events={events}
