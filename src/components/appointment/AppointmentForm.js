@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom"
 import { BarberContext } from "../barber/BarberProvider.js"
 import { ServiceContext } from "../service/ServiceProvider.js"
 import { AppointmentContext } from "./AppointmentProvider.js"
+import { Button } from "react-bootstrap"
 
 
 export const AppointmentForm = () => {
@@ -92,15 +93,6 @@ export const AppointmentForm = () => {
                     </select>
                 </div>
             </fieldset>
-            {/* <fieldset>
-                <div className="form-group">
-                    <label htmlFor="description">Description: </label>
-                    <input type="text" name="description" required autoFocus className="form-control"
-                        value={currentAppointment.description}
-                        onChange={changeAppointmentDescriptionState}
-                    />
-                </div>
-            </fieldset> */}
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="start_date">Start Date: </label>
@@ -112,7 +104,7 @@ export const AppointmentForm = () => {
             </fieldset>
 
 
-            <button type="submit"
+            <Button variant="light" type="submit"
                 onClick={evt => {
                     // Prevent form from being submitted
                     evt.preventDefault()
@@ -130,7 +122,7 @@ export const AppointmentForm = () => {
                     createAppointment(appointment)
                         .then(() => history.push("/appointments"))
                 }}
-                className="btn btn-primary">Confirm Appointment</button>
+                className="btn btn-primary">Confirm Appointment</Button>
         </form>
     )
 }

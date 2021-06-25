@@ -10,6 +10,7 @@ import { CustomerProvider } from "./customer/CustomerProvider.js"
 import { MyCalendar } from "./calendar/Calendar.js"
 import { AppointmentProvider } from "./appointment/AppointmentProvider.js"
 import { AppointmentForm } from "./appointment/AppointmentForm.js"
+import { Home } from "./home/Home.js"
 
 
 export const ApplicationViews = () => {
@@ -22,15 +23,24 @@ export const ApplicationViews = () => {
                 <WaitlistProvider>
                 <ServiceProvider>
                         <AppointmentProvider>
+                            <Route exact path="/">
+                                <Home />
+                            </Route>
                             <Route exact path="/waitlist">
-                            <BarberList />
+                                <BarberList />
+                            </Route>
+                            <Route exact path="/barbers">
+                                <BarberList />
                             </Route>
                             <Route exact path="/appointment">
                                 <MyCalendar />
                             <AppointmentForm />
                             </Route>
                         </AppointmentProvider>
-                        <Route exact path="/:queueMethod/services/:barberId">
+                        <Route exact path="/waitlist/services/:barberId">
+                            <ServiceList />
+                        </Route>
+                        <Route exact path="/services">
                             <ServiceList />
                         </Route>
                         <CustomerProvider>

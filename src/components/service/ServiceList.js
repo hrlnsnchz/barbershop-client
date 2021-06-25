@@ -3,8 +3,8 @@ import { useHistory } from "react-router"
 import { useParams } from "react-router-dom"
 import { ServiceContext } from "./ServiceProvider.js"
 import { CartProvider, useCart } from "react-use-cart";
-import { createWaitlist, WaitlistContext } from "../waitlist/WaitlistProvider"
-
+import { WaitlistContext } from "../waitlist/WaitlistProvider"
+import { Button } from "react-bootstrap"
 
 
 export const ServiceList = (props) => {
@@ -12,8 +12,6 @@ export const ServiceList = (props) => {
     const { createWaitlists} = useContext(WaitlistContext)
     const history = useHistory()
     const barberId = useParams()
-    console.log('barberId: ', parseInt(barberId.barberId));
-    console.log('barberId: ', barberId.queueMethod);
 
 
     const { addItem, emptyCart } = useCart();
@@ -24,12 +22,13 @@ export const ServiceList = (props) => {
 
     // npm package below this point
     function Page() {
-      
+      const { addItem } = useCart();
+
         return (
           <div>
             {services.map((s) => (
               <div key={s.id}>
-                <button onClick={() => addItem(s)}>{s.label} {' $'} {s.price}</button>
+                <Button className="btn btn-primary addItem" variant="light" onClick={() => addItem(s, 1)}>{s.label} {' $'} {s.price}</Button>
               </div>
             ))}
           </div>
@@ -39,7 +38,6 @@ export const ServiceList = (props) => {
       function Cart() {
         const {
           isEmpty,
-          totalUniqueItems,
           items,
           updateItemQuantity,
           removeItem,
@@ -54,27 +52,27 @@ export const ServiceList = (props) => {
       
         return (
           <>
-            <h1>Selected Services ({totalUniqueItems})</h1>
+            <h2>Selected Services</h2>
       
             <ul>
               {items.map((item) => (
                 <li key={item.id}>
                   {item.quantity} x {item.label} &mdash;
-                  <button
+                  <Button variant="light"
                     onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
                   >
                     -
-                  </button>
-                  <button
+                  </Button>
+                  <Button variant="light"
                     onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
                   >
                     +
-                  </button>
-                  <button onClick={() => removeItem(item.id)}>&times;</button>
+                  </Button>
+                  <Button variant="light" onClick={() => removeItem(item.id)}>&times;</Button>
                 </li>
               ))}
             </ul>
-            <button type="submit" className="btn btn-primary waitlist"
+            <Button type="submit" variant="light" className="btn btn-primary waitlist"
                 onClick={evt => {
                     // Prevent form from being submitted
                     evt.preventDefault()
@@ -84,14 +82,13 @@ export const ServiceList = (props) => {
                         waitlist_services: waitlist_services,
                         is_served: false
                     }
-                    console.log("waitlist:", waitlist)
 
                     // Send POST request to your API
                     createWaitlists(waitlist)
                         .then(() => emptyCart())
                         .then(() => history.push("/confirmation"))
                 }}
-                >Join Waitlist</button>
+                >Join Waitlist</Button>
           </>
         );
       }
@@ -102,16 +99,7 @@ export const ServiceList = (props) => {
                 <header className="services__header">
                     <h1>Available Services</h1>
                 </header>
-                {/* {
-                    Array.isArray(services) ? services.map(service => {
-                        return <section key={service.label} className="registration">
-                            <button className="registration__game" onClick={() => {
-                    history.push("/services")
-                    }}>{service.label} {' $'}
-                            {service.price}</button>
-                        </section>
-                    }): ''
-                } */}
+
             </article >
             <CartProvider>
                 <Page />
